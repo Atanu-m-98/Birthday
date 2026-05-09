@@ -1,158 +1,394 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>For Bubu ❤️</title>
-<style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday, Bubu ❤️</title>
 
-body{
-margin:0;
-background:linear-gradient(135deg,#ff758c,#ff7eb3);
-font-family:'Segoe UI',sans-serif;
-color:white;
-text-align:center;
-overflow-x:hidden;
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffc3a0);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
 }
 
 /* Glitter Title */
-.glitter{
-font-size:38px;
-background:linear-gradient(90deg,#fff,#ffd700,#fff);
-background-size:200% auto;
-color:transparent;
-background-clip:text;
--webkit-background-clip:text;
-animation:shine 3s linear infinite;
+.glitter {
+  font-size: 42px;
+  line-height: 1.2;
+  background: linear-gradient(90deg, #fff, #ffd700, #fff, #ffedf5);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shine 3s linear infinite;
 }
 
-@keyframes shine{
-to{background-position:200% center;}
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
-/* Envelope Screen */
-#cover{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,#ff4e8a,#ff9ac6);
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:10;
-cursor:pointer;
+/* Opening Cover */
+#cover {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff4e8a, #ff9ac6, #ffd1dc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 10;
+  cursor: pointer;
+  padding: 20px;
 }
 
-.envelope{
-width:200px;
-height:130px;
-background:white;
-position:relative;
-border-radius:10px;
-box-shadow:0 10px 20px rgba(0,0,0,0.3);
+.envelope {
+  width: 220px;
+  height: 145px;
+  background: white;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+  animation: float 2s ease-in-out infinite;
 }
 
-.envelope:before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-width:0;
-height:0;
-border-left:100px solid transparent;
-border-right:100px solid transparent;
-border-bottom:65px solid #ff758c;
+.envelope::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-bottom: 72px solid #ff758c;
 }
 
-#cover h2{
-margin-top:20px;
+.envelope::after {
+  content: '💌';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
 }
 
-/* Card */
-.card{
-background:rgba(255,255,255,0.15);
-padding:40px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-backdrop-filter: blur(12px);
-max-width:600px;
-margin:120px auto 60px;
-display:none;
+#cover h2 {
+  margin-top: 26px;
+  font-size: 28px;
 }
 
-/* Rose petals */
-.petal{
-position:fixed;
-top:-50px;
-font-size:22px;
-animation:fall linear infinite;
-pointer-events:none;
+#cover p {
+  margin-top: 0;
+  font-size: 17px;
+  opacity: 0.95;
 }
 
-@keyframes fall{
-0%{transform:translateY(0) rotate(0deg);}
-100%{transform:translateY(110vh) rotate(360deg);}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
-img{
-margin-top:25px;
-width:100%;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,0.3);
+/* Birthday Card */
+.card {
+  background: rgba(255, 255, 255, 0.16);
+  padding: 42px 28px;
+  border-radius: 28px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(14px);
+  max-width: 680px;
+  margin: 90px auto 70px;
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
+.card p {
+  font-size: 19px;
+  line-height: 1.8;
+}
+
+.birthday-line {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.carousel {
+  margin-top: 30px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.32);
+}
+
+.carousel img {
+  width: 100%;
+  display: none;
+  border-radius: 18px;
+}
+
+.carousel img.active {
+  display: block;
+  animation: fadePhoto 0.8s ease-in-out;
+}
+
+@keyframes fadePhoto {
+  from {
+    opacity: 0.35;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: #ff4e8a;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.25);
+}
+
+.carousel-btn:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.prev {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: white;
+}
+
+button {
+  margin-top: 24px;
+  padding: 13px 24px;
+  border: none;
+  border-radius: 999px;
+  background: white;
+  color: #ff4e8a;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+}
+
+button:hover {
+  transform: scale(1.04);
+}
+
+/* Falling hearts, petals, balloons */
+.fall-item {
+  position: fixed;
+  top: -60px;
+  font-size: 24px;
+  animation: fall linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.8;
+  }
+}
+
+/* Small screen */
+@media (max-width: 600px) {
+  .glitter {
+    font-size: 32px;
+  }
+
+  .card {
+    margin: 70px 16px 50px;
+    padding: 34px 22px;
+  }
+
+  .card p {
+    font-size: 17px;
+  }
+}
 </style>
 </head>
+
 <body>
 
 <!-- Cover -->
 <div id="cover" onclick="openLetter()">
-<div class="envelope"></div>
-<h2>Click to Open 💌</h2>
+  <div class="envelope"></div>
+  <h2>Click to Open 💌</h2>
+  <p>A little birthday surprise is waiting for you...</p>
 </div>
 
-<!-- Love Letter -->
+<!-- Birthday Letter -->
 <div class="card" id="letter">
-<h1 class="glitter">Happy Valentine’s Day, Bubu ❤️</h1>
-<p>
-I don’t say this enough, but being with you is amazing.<br><br>
-I love every second of it, even when I cry a lot.<br><br>
-Thank you for choosing me.<br><br>
-You are my favorite person in the world.
-</p>
-<img src="IMG20250929110544.jpg">
+  <h1 class="glitter">Happy Birthday, Bubu ❤️</h1>
+
+  <div class="birthday-line">🎂✨ To the most special person in my life ✨🎂</div>
+
+  <p>
+    Happy Birthday, Bubu ❤️<br><br>
+
+    I hope your day is as special as you are.
+    Thank you for being in my life and making everything better.<br><br>
+
+    Wishing you lots of happiness, success, and love always.<br><br>
+
+    I love you. 💕
+  </p>
+
+  <!-- Photo Carousel: upload these images to your GitHub repository -->
+  <div class="carousel">
+    <img class="slide active" src="photo1.jpg" alt="Memory 1" />
+    <img class="slide" src="photo2.jpg" alt="Memory 2" />
+    <img class="slide" src="photo3.jpg" alt="Memory 3" />
+    <img class="slide" src="photo4.jpg" alt="Memory 4" />
+    <img class="slide" src="photo5.jpg" alt="Memory 5" />
+
+    <button class="carousel-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="carousel-btn next" onclick="changeSlide(1)">&#10095;</button>
+  </div>
+
+  <div class="dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+    <span class="dot" onclick="goToSlide(3)"></span>
+    <span class="dot" onclick="goToSlide(4)"></span>
+  </div>
+
+  <button onclick="showExtraLove()">Click for one more wish 💖</button>
+  <p id="extraLove" style="display:none; font-size:21px; margin-top:22px;">
+    You are my today, my tomorrow, and my forever. ❤️
+  </p>
 </div>
 
-<!-- Music -->
+<!-- Music: replace love.mp3 with your own music file name -->
 <audio id="music" loop>
-<source src="love.mp3" type="audio/mpeg">
+  <source src="love.mp3" type="audio/mpeg" />
 </audio>
 
 <script>
+function openLetter() {
+  document.getElementById("cover").style.display = "none";
+  document.getElementById("letter").style.display = "block";
 
-function openLetter(){
-document.getElementById("cover").style.display="none";
-document.getElementById("letter").style.display="block";
-document.getElementById("music").play();
-startPetals();
+  const music = document.getElementById("music");
+  music.play().catch(() => {
+    console.log("Music will play after user interaction.");
+  });
+
+  startFallingItems();
 }
 
-function startPetals(){
-setInterval(createPetal,400);
+function showExtraLove() {
+  document.getElementById("extraLove").style.display = "block";
 }
 
-function createPetal(){
-const petal=document.createElement("div");
-petal.className="petal";
-petal.style.left=Math.random()*100+"vw";
-petal.style.animationDuration=(5+Math.random()*5)+"s";
-petal.innerHTML="🌹";
-document.body.appendChild(petal);
-setTimeout(()=>{petal.remove()},10000);
+let currentSlide = 0;
+
+function showSlide(index) {
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
+
+  if (index >= slides.length) {
+    currentSlide = 0;
+  } else if (index < 0) {
+    currentSlide = slides.length - 1;
+  } else {
+    currentSlide = index;
+  }
+
+  slides.forEach(slide => slide.classList.remove("active"));
+  dots.forEach(dot => dot.classList.remove("active"));
+
+  slides[currentSlide].classList.add("active");
+  dots[currentSlide].classList.add("active");
 }
 
+function changeSlide(direction) {
+  showSlide(currentSlide + direction);
+}
+
+function goToSlide(index) {
+  showSlide(index);
+}
+
+setInterval(() => {
+  changeSlide(1);
+}, 3500);
+
+function startFallingItems() {
+  setInterval(createFallingItem, 350);
+}
+
+function createFallingItem() {
+  const item = document.createElement("div");
+  item.className = "fall-item";
+
+  const symbols = ["🌹", "❤️", "💖", "🎈", "✨", "🎂"];
+  item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+  item.style.left = Math.random() * 100 + "vw";
+  item.style.animationDuration = 5 + Math.random() * 5 + "s";
+  item.style.fontSize = 20 + Math.random() * 16 + "px";
+
+  document.body.appendChild(item);
+
+  setTimeout(() => {
+    item.remove();
+  }, 10000);
+}
 </script>
 
 </body>
